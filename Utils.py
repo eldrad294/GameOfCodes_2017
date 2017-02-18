@@ -21,10 +21,10 @@ def look_ahead_for_coffee(timer, patience_level, road_timing):
         if timing <= patience_level:
             return i
 #
-def route_finder(inward, timer, patience_level, current_loc):
+def route_finder(inward, timer, patience_level, current_loc, road_timings):
     """ This function provides the optimum path with least timing possible """
     route_file_list = []
-    for j, road_timing in enumerate(inward.get_road_timings()):
+    for j, road_timing in enumerate(road_timings):
         #
         # Var Initialization
         coffee_break = 0
