@@ -11,3 +11,10 @@ def order_by_start(start_loc, road_timings):
             original_list.append(road_timing)
     #
     return temp_list + original_list
+#
+def look_ahead_for_coffee(timer, patience_level, road_timing):
+    for i, timing in enumerate(road_timing[timer:]):
+        timing = int(timing)
+        if timing <= patience_level:
+            return i
+

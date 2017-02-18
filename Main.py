@@ -10,8 +10,8 @@ oh.clear_data_in_file()
 inward = ih.read_data(const.ROADS_FILE_PATH)
 #
 # We order road_timings by order asc of start location
-ordered_road_timings = util.order_by_start(inward.start_loc, inward.get_road_timings())
-# for road_timing in inward.get_road_timings:
+# ordered_road_timings = util.order_by_start(inward.start_loc, inward.get_road_timings())
+# for road_timing in ordered_road_timings:
 #     print(road_timing.start)
 #
 # Vars
@@ -20,7 +20,7 @@ patience_level = 2
 current_loc = 'start'
 
 #
-for j, road_timing in enumerate(ordered_road_timings):
+for j, road_timing in enumerate(inward.get_road_timings()):
     #
     # Var Initialization
     coffee_break = 0
@@ -36,20 +36,22 @@ for j, road_timing in enumerate(ordered_road_timings):
         if i >= timer:
             #
             # If we don't have patience, lets consider a coffee
-            if time >= patience_level:
+            if time > patience_level:
                 #
                 # If the location has a coffee shop, and we haven't had a coffee yet for this stop, have coffee break
                 if util.has_coffee(inward.start_loc) and coffee_break == 0:
-                    coffee_break = 1
-                    #coffee_break = util.look_ahead(timer, patience_level, road_timing)
+                    coffee_break = util.look_ahead_for_coffee(timer, patience_level, road_timing.get_time())
+                    print('Look Ahead' + str(coffee_break))
+                    #
+                    # Advance timer and write to RT file. For the first road iteration, we do not count the coffee break
+                    if j != 0:
+                        timer += coffee_break
+                    oh.write_data(const.COFFEE + " " + str(coffee_break))
+                    continue
             #
-            # Advance timer and write to RT file
-            if coffee_break == 0:
-                timer += time
-                oh.write_data(road_timing.destination)
-            else:
-                timer += coffee_break
-                oh.write_data(const.COFFEE + " " + str(coffee_break))
+            timer += time
+            oh.write_data(road_timing.destination)
+            #
             break
     #
     if inward.end_loc == road_timing.destination:

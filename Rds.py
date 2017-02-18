@@ -12,4 +12,3 @@ class RDs:
     #
     def get_road_timings(self):
         return self.road_timings
-    #
