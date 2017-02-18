@@ -19,10 +19,10 @@ inward = ih.read_data(const.ROADS_FILE_PATH)
 with cf.ThreadPoolExecutor(max_workers=4) as executor:
     #
     # Kicking off 4 simultaneous jobs
-    thread1 = executor.submit(util.route_finder, inward, timer=0, patience_level=1, current_loc='start')
+    thread1 = executor.submit(util.route_finder, inward, timer=0, patience_level=2, current_loc='start')
     thread2 = executor.submit(util.route_finder, inward, timer=0, patience_level=2, current_loc='start')
-    thread3 = executor.submit(util.route_finder, inward, timer=0, patience_level=3, current_loc='start')
-    thread4 = executor.submit(util.route_finder, inward, timer=0, patience_level=4, current_loc='start')
+    thread3 = executor.submit(util.route_finder, inward, timer=0, patience_level=2, current_loc='start')
+    thread4 = executor.submit(util.route_finder, inward, timer=0, patience_level=2, current_loc='start')
     #
     timer1, route_list_1 = thread1.result()
     timer2, route_list_2 = thread2.result()
@@ -42,8 +42,11 @@ all_routes.append(route_list_3)
 all_routes.append(route_list_4)
 #
 # Calling the optimizer method to decide which was the fastest route and writing  contents of routes to rd file
-for route in o.get_optimizer_results(all_timings, all_routes):
+routes, timing = o.get_optimizer_results(all_timings, all_routes)
+for route in routes:
     oh.write_data(route)
+    print(timing)
+    exit(1)
 #
 # ret, route_file_list = util.route_finder(
 #     inward=inward,

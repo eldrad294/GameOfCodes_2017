@@ -45,7 +45,7 @@ def get_optimizer_results(all_timings, all_routes):
             for i, paths in enumerate(paths_with_coffees):
                 if total_coffee < coffee_timer(paths):
                     index = i
-            return all_routes[index]
+            return all_routes[index], equal_timings[index]
             # optimized_timing = all_timings.index(min(all_timings))
             # return all_routes[optimized_timing]
 #
