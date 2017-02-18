@@ -7,6 +7,6 @@ def clear_data_in_file():
 #
 def write_data(output):
     "Append to file"
-    with open(const.ROUTE_FILE_PATH, "a") as myfile:
-        myfile.write(output+"\n")
+    with open(const.ROUTE_FILE_PATH, "a") as my_file:
+        my_file.write(output+"\n")
 
