@@ -9,8 +9,8 @@ import sys
 try:
     ROADS_FILE_PATH = sys.argv[1]
     ROUTE_FILE_PATH = sys.argv[2]
-    print("Opening" + ROADS_FILE_PATH)
-    print("Opening" + ROUTE_FILE_PATH)
+    print("Opening " + ROADS_FILE_PATH)
+    print("Opening " + ROUTE_FILE_PATH)
 except Exception as e:
     print(str(e))
     exit(1)
@@ -55,7 +55,6 @@ routes, timing = o.get_optimizer_results(all_timings, all_routes)
 for route in routes:
     oh.write_data(ROUTE_FILE_PATH, route)
 print(timing)
-exit(1)
 #
 # ret, route_file_list = util.route_finder(
 #     inward=inward,
