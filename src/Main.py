@@ -9,6 +9,8 @@ import sys
 try:
     ROADS_FILE_PATH = sys.argv[0]
     ROUTE_FILE_PATH = sys.argv[1]
+    print("Opening" + ROADS_FILE_PATH)
+    print("Opening" + ROUTE_FILE_PATH)
 except Exception as e:
     print(str(e))
     exit(1)
