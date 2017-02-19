@@ -3,7 +3,7 @@ from src.RoadTimings import RoadTimings as RT
 #
 def read_data(filename):
     #
-    with open(filename) as f:
+    with open(filename, encoding='utf8') as f:
         content = f.readlines()
     #
     road_timings = []
