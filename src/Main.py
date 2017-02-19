@@ -7,8 +7,8 @@ import sys
 #
 # Receving Inputs
 try:
-    ROADS_FILE_PATH = sys.argv[0]
-    ROUTE_FILE_PATH = sys.argv[1]
+    ROADS_FILE_PATH = sys.argv[1]
+    ROUTE_FILE_PATH = sys.argv[2]
     print("Opening" + ROADS_FILE_PATH)
     print("Opening" + ROUTE_FILE_PATH)
 except Exception as e:
