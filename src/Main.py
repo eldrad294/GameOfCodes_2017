@@ -1,15 +1,23 @@
 import src.InputHandler as ih
 import src.OutputHandler as oh
 import src.Utils as util
-import src.Constants as const
 import concurrent.futures as cf
 import src.Optimizer as o
+import sys
+#
+# Receving Inputs
+try:
+    ROADS_FILE_PATH = sys.argv[0]
+    ROUTE_FILE_PATH = sys.argv[1]
+except Exception as e:
+    print(str(e))
+    exit(1)
 #
 # Writes over and creates new route_file.rd
-oh.clear_data_in_file()
+oh.clear_data_in_file(ROUTE_FILE_PATH)
 #
 # Reads from roads_file.rds
-inward = ih.read_data(const.ROADS_FILE_PATH)
+inward = ih.read_data(ROADS_FILE_PATH)
 #
 # We order road_timings by order asc of start location
 unordered_road_timings = inward.get_road_timings()
@@ -43,7 +51,7 @@ all_routes.append(route_list_4)
 # Calling the optimizer method to decide which was the fastest route and writing  contents of routes to rd file
 routes, timing = o.get_optimizer_results(all_timings, all_routes)
 for route in routes:
-    oh.write_data(route)
+    oh.write_data(ROUTE_FILE_PATH, route)
 print(timing)
 exit(1)
 #
