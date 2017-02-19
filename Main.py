@@ -18,10 +18,10 @@ ordered_road_timings = util.order_by_start(inward.start_loc, inward.get_road_tim
 with cf.ThreadPoolExecutor(max_workers=4) as executor:
     #
     # Kicking off 4 simultaneous jobs
-    thread1 = executor.submit(util.route_finder, inward, timer=0, patience_level=2, current_loc='start', road_timings=unordered_road_timings)
+    thread1 = executor.submit(util.route_finder, inward, timer=0, patience_level=1, current_loc='start', road_timings=unordered_road_timings)
     thread2 = executor.submit(util.route_finder, inward, timer=0, patience_level=2, current_loc='start', road_timings=ordered_road_timings)
     thread3 = executor.submit(util.route_finder, inward, timer=0, patience_level=3, current_loc='start', road_timings=unordered_road_timings)
-    thread4 = executor.submit(util.route_finder, inward, timer=0, patience_level=3, current_loc='start', road_timings=ordered_road_timings)
+    thread4 = executor.submit(util.route_finder, inward, timer=0, patience_level=4, current_loc='start', road_timings=ordered_road_timings)
     #
     timer1, route_list_1 = thread1.result()
     timer2, route_list_2 = thread2.result()

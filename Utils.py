@@ -15,7 +15,7 @@ def order_by_start(start_loc, road_timings):
     return temp_list + original_list
 #
 def look_ahead_for_coffee(timer, patience_level, road_timing):
-    """ Coffee  look ahead for current level 0 route """
+    """ Coffee look ahead for current level 0 route """
     for i, timing in enumerate(road_timing[timer:]):
         timing = int(timing)
         if timing <= patience_level:
@@ -46,6 +46,8 @@ def route_finder(inward, timer, patience_level, current_loc, road_timings):
                     # have coffee break
                     if has_coffee(inward.start_loc) and coffee_break == 0:
                         coffee_break = look_ahead_for_coffee(timer, patience_level, road_timing.get_time())
+                        if coffee_break is None:
+                            continue
                         #
                         # Advance timer and write to RT file. For the first road iteration, we do not count the
                         # time taken for coffee break
@@ -65,4 +67,3 @@ def route_finder(inward, timer, patience_level, current_loc, road_timings):
         # Assigns the road destination to current_loc variable
         current_loc = road_timing.destination
     return timer, route_file_list
-
