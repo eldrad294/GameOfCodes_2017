@@ -1,4 +1,4 @@
-import Constants as const
+import src.Constants as const
 #
 def clear_data_in_file():
     "Write over file / Create new file"

@@ -1,4 +1,4 @@
-import Constants as const
+import src.Constants as const
 #
 def has_coffee(location):
     return True if "*" in location else False

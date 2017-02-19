@@ -1,5 +1,5 @@
-from Rds import RDs as rd
-from RoadTimings import RoadTimings as RT
+from src.Rds import RDs as rd
+from src.RoadTimings import RoadTimings as RT
 #
 def read_data(filename):
     #
